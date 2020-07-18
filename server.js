@@ -9,6 +9,12 @@ var PORT = process.env.PORT || 3001;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// Array for Reservations (DATA)
+// =============================================================
+var reservations = [];
+
+var waitingArray = [];
+
 // routes/////
 // Basic route that sends the user first to the AJAX Page
 app.get("/", function (req, res) {
@@ -45,7 +51,7 @@ app.get("/api/cleartable", function (req, res) {
     res.status(200).json(tablelist);
 })
 // Adding the post route//
-app.post("/api/reserve", function (req, res) {
+app.post("/api/tables", function (req, res) {
     tablelist.push(
         {
             customerName: req.body.customerName || "",
@@ -57,8 +63,16 @@ app.post("/api/reserve", function (req, res) {
 
     if (tablelist.length > 5) {
         res.status(200).send("You have been added to the wait list");
+        console.log(newReservation);
+        waitingArray.push(newReservation);
+
+        res.json(newReservation);
     } else {
         res.status(200).send("Your reservation has been accepted");
+        console.log(newReservation);    
+        reservations.push(newReservation);
+    
+        res.json(newReservation);
     }
 });
 
