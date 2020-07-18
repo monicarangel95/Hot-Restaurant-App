@@ -31,4 +31,12 @@ app.get("/api/tables", function (req, res) {
   res.status(200).json(tablelist);
 
 });
-
+// get table list
+app.get("/api/waitlist", function(req, res){
+    let tables = [];
+    if(tablelist.length > 5){
+      tables = tablelist.slice(5);
+    }
+    res.status(200).json(tables);
+  })
+  
