@@ -12,7 +12,55 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 </head>
 <body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="jumbotron">
+              <h1>Make a Reservation</h1>
+              <h3>Fill in Below!</h3>
+              <hr>
+              <a href="/"><button class="btn btn-danger btn-lg"><span class="fa fa-eye"></span>Make a Reservation</button></a>
+            </div>
+    </div>
 
+    <div class="col-12 container">
+
+        <div class="card">
+          <div class="card-header">
+            <h3><strong>Make a Reservation</strong></h3>
+          </div>
+          <div class="card-body">
+            <form method="POST" role="form">
+
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name">
+              </div>
+
+              <div class="form-group">
+                <label for="role">Phone Number</label>
+                <input type="text" class="form-control" id="role">
+              </div>
+
+              <div class="form-group">
+                <label for="age">E-mail</label>
+                <input type="text" class="form-control" id="age">
+              </div>
+
+              <div class="form-group">
+                <label for="force-points">Group ID</label>
+                <input type="text" class="form-control" id="force-points">
+              </div>
+
+            </form>
+            <br>
+            <div class="text-right">
+              <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="fa fa-fire"></span>Add your Group</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    
     <script src="assets/js/script.js"></script>    
 </body>
 </html>
