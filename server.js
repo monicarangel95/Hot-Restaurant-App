@@ -1,5 +1,5 @@
 // Dependencies
-var express = require ("express");
+var express = require("express");
 var path = require("path");
 var tablelist = [];
 // sets up the Express App
@@ -12,31 +12,43 @@ app.use(express.json());
 // routes/////
 // Basic route that sends the user first to the AJAX Page
 app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "home.html"));
+    res.sendFile(path.join(__dirname, "home.html"));
 });
 //tables and waiting list
 app.get("/tables", function (req, res) {
-  res.sendFile(path.join(__dirname, "tables.html"));
+    res.sendFile(path.join(__dirname, "tables.html"));
 });
 
 // reservation addition
 app.get("/reserve", function (req, res) {
-  res.sendFile(path.join(__dirname, "reserve.html"));
+    res.sendFile(path.join(__dirname, "reserve.html"));
 });
 
 // table list
 app.get("/api/tables", function (req, res) {
 
-  console.log(tablelist);
-  res.status(200).json(tablelist);
+    console.log(tablelist);
+    res.status(200).json(tablelist);
 
 });
 // get table list
-app.get("/api/waitlist", function(req, res){
+app.get("/api/waitlist", function (req, res) {
     let tables = [];
-    if(tablelist.length > 5){
-      tables = tablelist.slice(5);
+    if (tablelist.length > 5) {
+        tables = tablelist.slice(5);
     }
     res.status(200).json(tables);
-  })
-  
+})
+
+app.get("/api/cleartable", function (req, res) {
+    tablelist = [];
+    res.status(200).json(tablelist);
+})
+// post route//
+
+
+
+//server starts listening
+app.listen(PORT, function () {
+    console.log("App listening on PORT " + PORT);
+});
