@@ -12,11 +12,11 @@ app.use(express.json());
 // routes/////
 // Basic route that sends the user first to the AJAX Page
 app.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname, "home.html"));
+    res.sendFile(path.join(__dirname, "index.html"));
 });
 //tables and waiting list
 app.get("/tables", function (req, res) {
-    res.sendFile(path.join(__dirname, "tables.html"));
+    res.sendFile(path.join(__dirname, "waiting.html"));
 });
 
 // reservation addition
@@ -44,9 +44,23 @@ app.get("/api/cleartable", function (req, res) {
     tablelist = [];
     res.status(200).json(tablelist);
 })
-// post route//
+// Adding the post route//
+app.post("/api/reserve", function (req, res) {
+    tablelist.push(
+        {
+            customerName: req.body.customerName || "",
+            phoneNumber: req.body.phoneNumber || "",
+            customerEmail: req.body.customerEmail || "",
+            customerID: req.body.customerID || ""
+        }
+    );
 
-
+    if (tablelist.length > 5) {
+        res.status(200).send("You have been added to the wait list");
+    } else {
+        res.status(200).send("Your reservation has been accepted");
+    }
+});
 
 //server starts listening
 app.listen(PORT, function () {
