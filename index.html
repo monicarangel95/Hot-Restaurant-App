@@ -5,62 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="assets/css/reset.css">
+    <!-- <link rel="stylesheet" href="assets/css/reset.css"> -->
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="wrapper">
-        <div class="container">
-            <div class="jumbotron">
-              <h1>Make a Reservation</h1>
-              <h3>Fill in Below!</h3>
-              <hr>
-              <a href="/"><button class="btn btn-danger btn-lg"><span class="fa fa-eye"></span>Make a Reservation</button></a>
+            <div class="container">
+                <div class="jumbotron">
+                <h1>Make a Reservation</h1>
+                <h3>Fill in Below!</h3>
+                <hr>
+                <a href="reserve.html"><button class="btn btn-danger btn-lg"><span class="fa fa-eye"></span>Make a Reservation</button></a>
+                <a href="waiting.html"><button class="btn btn-danger btn-lg"><span class="fa fa-eye">View Tables</span></button></a>
             </div>
-    </div>
 
-    <div class="col-12 container">
+            <div class="navAPI">
+                <ul class="nav">
+                    <li class="nav-item">
+                      <a class="nav-link active" href="#">API Table Link</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">API Wait List</a>
+                    </li>
 
-        <div class="card">
-          <div class="card-header">
-            <h3><strong>Make a Reservation</strong></h3>
-          </div>
-          <div class="card-body">
-            <form method="POST" role="form">
-
-              <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" id="name">
-              </div>
-
-              <div class="form-group">
-                <label for="role">Phone Number</label>
-                <input type="text" class="form-control" id="role">
-              </div>
-
-              <div class="form-group">
-                <label for="age">E-mail</label>
-                <input type="text" class="form-control" id="age">
-              </div>
-
-              <div class="form-group">
-                <label for="force-points">Group ID</label>
-                <input type="text" class="form-control" id="force-points">
-              </div>
-
-            </form>
-            <br>
-            <div class="text-right">
-              <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="fa fa-fire"></span>Add your Group</button>
+                  </ul>
             </div>
-          </div>
-        </div>
-    </div>
+        
+
 
     
+    </div>
+
     <script src="assets/js/script.js"></script>    
 </body>
 </html>
