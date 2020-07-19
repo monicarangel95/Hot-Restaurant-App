@@ -4,17 +4,9 @@
   "description": "hot-restaurant-app",
   "main": "server.js",
   "dependencies": {
-    "express": "^4.17.1",
-    "path": "^0.12.7"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/monicarangel95/Hot-Restaurant-App.git"
-  },
-  "homepage": "https://github.com/monicarangel95/Hot-Restaurant-App/tree#readme"
+    "express": "^4.17.1"
+},
+"scripts": {
+  "start": "node server.js"
+}
 }
