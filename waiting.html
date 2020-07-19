@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Waiting List</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -16,30 +16,29 @@
             <h1>Make a Reservation</h1>
             <h3>Fill in Below!</h3>
             <hr>
-            <a href="index.html"><button class="btn btn-danger btn-lg"><span class="fa fa-eye"></span>Home</button></a>
-            <a href="waiting.html"><button class="btn btn-danger btn-lg"><span class="fa fa-eye">View Tables</span></button></a>
+            <a href="/"><button class="btn btn-danger btn-lg"><span class="fa fa-eye"></span>Home</button></a>
+            <a href="/reserve"><button class="btn btn-danger btn-lg"><span class="fa fa-eye">Make A Reservation</span></button></a>
 
         </section>
 
-        <section id="currentReservations">
+        <section id="currentReservations" class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header">Current Reservations</div>
-                        <div class="card-body">
-                            
+                        <div class="card-header"><strong>Current Reservations</strong></div>
+                        <div id="reservations" class="card-body">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
-        <section id="waitingList">
+        <br>
+        <section id="waitingList" class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header">Waiting List</div>
-                        <div class="card-body">
+                        <div class="card-header"><strong>Waiting List</strong></div>
+                        <div id="waiting" class="card-body">
 
                         </div>
                     </div>
@@ -49,6 +48,42 @@
 
     </div>
 
-<script src="assets/js/script.js"></script>    
-</body>
-</html>
+    <script type="text/javascript">
+
+        $.get("/api/tables", function (tablelist) {
+          if (tablelist.length > 0) {
+            tables = tablelist.slice(0,5);
+            for (var i = 0; i < tables.length; i++) {
+              var customerName = tables[i].customerName;
+              var phoneNumber = tables[i].phoneNumber;
+              var customerEmail = tables[i].customerEmail;
+              var groupId = tables[i].customerID;
+      
+              let list1 = `
+                <div> Customer Name: ${customerName} </div>
+                <div> Phone Number: ${phoneNumber} </div>
+                <div> Email: ${customerEmail} </div>
+                <div> Reservation ID: ${groupId} </div>`
+      
+              $("#currentReservations").append(`${list1}`);
+            }
+          }
+          if(tablelist.length > 5){
+            for (var i = 5; i < tablelist.length; i++) {
+              var customerName = tablelist[i].customerName;
+              var phoneNumber = tablelist[i].phoneNumber;
+              var customerEmail = tablelist[i].customerEmail;
+              var groupId = tablelist[i].customerID;
+      
+              let list2 = `
+                <div> Customer Name: ${customerName} </div>
+                <div> Phone Number: ${phoneNumber} </div>
+                <div> Email: ${customerEmail} </div>
+                <div> Reservation ID: ${groupId} </div>`
+      
+              $("#waitingList").append(`${list2}`);
+            }
+          }
+      
+        });
+      </script>   

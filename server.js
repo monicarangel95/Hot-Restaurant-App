@@ -48,15 +48,15 @@ app.get("/api/cleartable", function (req, res) {
 app.post("/api/reserve", function (req, res) {
     tablelist.push(
         {
-            customerName: req.body.customerName || "",
+            customerName: req.body.customerName|| "",
             phoneNumber: req.body.phoneNumber || "",
-            customerEmail: req.body.customerEmail || "",
-            customerID: req.body.customerID || ""
+            customerEmail: req.body.customerEmail|| "",
+            customerID: req.body.customerID|| ""
         }
     );
 
     if (tablelist.length > 5) {
-        res.status(200).send("You have been added to the wait list");
+        res.status(200).send("You have been added to the waitlist");
     } else {
         res.status(200).send("Your reservation has been accepted");
     }
