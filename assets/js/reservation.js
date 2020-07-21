@@ -10,13 +10,13 @@ $(document).ready(function(){
         console.log(response);
         for(i=0; i<response.length;i++){
             var list = $("<li class='list-group-item'>");
-            list.append(
+            list1.append(
                 $("<h2>").text("Table " + (i + 1)),
                 $("<hr>"),
-                $("<h3>").text("ID: " + )
-                $("<h3>").text("Name: " + )
-                $("<h3>").text("Email: " + )
-                $("<h3>").text("Phone: " + )
+                $("<h3>").text("ID: " + tables[i].customerID),
+                $("<h3>").text("Name: " + tables[i].customerName),
+                $("<h3>").text("Email: " + tables[i].customerEmail),
+                $("<h3>").text("Phone: " + tables[i].phoneNumber)
             );
             $("#reservations").append(list);
         }
@@ -29,14 +29,14 @@ $(document).ready(function(){
         console.log(response);
         for(i=0; i<response.length;i++){
             var list = $("<li class='list-group-item'>");
-            list.append(
+            list2.append(
                 $("<h2>").text("Table " + (i + 1)),
                 $("<hr>"),
-                $("<h3>").text("ID: " + waitingArray[i].customerID)
-                $("<h3>").text("Name: " + waitingArray[i].customerName)
-                $("<h3>").text("Email: " + waitingArray[i].customerEmail)
-                $("<h3>").text("Phone: " + waitingArray[i].phoneNumber)
+                $("<h3>").text("ID: " + waitlist[i].customerID),
+                $("<h3>").text("Name: " + waitlist[i].customerName),
+                $("<h3>").text("Email: " + waitlist[i].customerEmail),
+                $("<h3>").text("Phone: " + waitlist[i].phoneNumber),
             );
-            $("#reservations").append(list);
+            $("#waiting").append(list);
     }
 })

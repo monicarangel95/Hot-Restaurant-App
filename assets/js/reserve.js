@@ -10,6 +10,8 @@ $("#reserve").on("click", function(add){
     console.log(newPeople);
 
     $.post("/api/tables", newPeople, function(){
+        
+        
         $("#name").val(""),
         $("#phonenum").val(""),
         $("#email").val(""),
