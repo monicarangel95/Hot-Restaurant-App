@@ -16,8 +16,9 @@
             <h1>Make a Reservation</h1>
             <h3>Fill in Below!</h3>
             <hr>
-            <a href="index.html"><button class="btn btn-danger btn-lg"><span class="fa fa-eye"></span>Home</button></a>
-            <a href="reserve.html"><button class="btn btn-danger btn-lg"><span class="fa fa-eye">Make A Reservation</span></button></a>
+            <a href="/"><button class="btn btn-danger btn-lg"><span class="fa fa-eye"></span>Home</button></a>
+            <a href="/reserve"><button class="btn btn-danger btn-lg"><span class="fa fa-eye">Make A
+                  Reservation</span></button></a>
 
         </section>
 
@@ -34,20 +35,71 @@
         </section>
         <br>
         <section id="waitingList" class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header"><strong>Waiting List</strong></div>
-                        <div id="waiting" class="card-body">
-
-                        </div>
-                    </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header"><strong>Waiting List</strong></div>
+                <div id="waitList" class="card-body">
+    
                 </div>
+              </div>
             </div>
+          </div>
         </section>
-
-    </div>
-
-<script src="assets/js/reservation.js"></script>    
-</body>
-</html>
+    
+      </div>
+    
+      <script type="text/javascript">
+        function runTableQuery() {
+          $.ajax({ url: "/api/tables", method: "GET" })
+            .then(function (data) {
+              console.log(data);
+              console.log("******");
+              for (var i = 0; i < data.length; i++) {
+                var tableList = $("#tableList");
+                var listItem = $("<li class='list-group-item mt-4'>");
+                listItem.append(
+                  $("<h2>").text("Table " + (i + 1)),
+                  $("<hr>"),
+                  $("<h2>").text("groupID: " + data[i].customerID),
+                  $("<h2>").text("name: " + data[i].customerName),
+                  $("<h2>").text("email: " + data[i].customerEmail),
+                  $("<h2>").text("phoneNum: " + data[i].phoneNumber)
+                );
+                tableList.append(listItem);
+              }
+            });
+        }
+        function runWaitListQuery() {
+          $.ajax({ url: "/api/waitlist", method: "GET" })
+            .then(function (data) {
+              console.log(data);
+              console.log("******");
+              for (var i = 0; i < data.length; i++) {
+                var waitList = $("#waitList");
+                var listItem = $("<li class='list-group-item mt-4'>");
+                listItem.append(
+                  $("<h2>").text("Table #" + (i + 1)),
+                  $("<hr>"),
+                  $("<h2>").text("groupID: " + data[i].customerID),
+                  $("<h2>").text("name: " + data[i].customerName),
+                  $("<h2>").text("email: " + data[i].customerEmail),
+                  $("<h2>").text("phoneNum: " + data[i].phoneNumber)
+                );
+                waitList.append(listItem);
+              }
+            });
+        }
+        function clearTable() {
+          alert("Clearing");
+          $.ajax({ url: "/api/clear", method: "POST" }).then(function () {
+            $("#waitList").empty();
+            $("#tableList").empty();
+          });
+        }
+        $("#clear").on("click", clearTable);
+        runTableQuery();
+        runWaitListQuery();
+      </script>
+    </body>
+    </html>

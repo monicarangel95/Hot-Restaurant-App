@@ -8,7 +8,7 @@
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="assets/css/reset.css"> -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -19,11 +19,9 @@
             <h1>Make a Reservation</h1>
             <h3>Fill in Below!</h3>
             <hr>
-            <a href="index.html"><button class="btn btn-danger btn-lg"><span class="fa fa-eye"></span>Home</button></a>
-            <a href="waiting.html"><button class="btn btn-danger btn-lg"><span class="fa fa-eye">View Tables</span></button></a>
-
+            <a href="/"><button class="btn btn-danger btn-lg"><span class="fa fa-eye"></span>Home</button></a>
+            <a href="/tables"><button class="btn btn-danger btn-lg"><span class="fa fa-eye">View Tables</span></button></a>
         </section>
-
         <section id="" class="col-12 ">
 
             <div class="card">
@@ -39,34 +37,70 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="role">Phone Number</label>
-                    <input type="text" class="form-control" id="phonenum">
+                    <label for="phoneNum">Phone Number</label>
+                    <input type="text" class="form-control" id="phoneNum">
                 </div>
 
                 <div class="form-group">
-                    <label for="age">E-mail</label>
+                    <label for="email">E-mail</label>
                     <input type="text" class="form-control" id="email">
                 </div>
 
                 <div class="form-group">
-                    <label for="force-points">Group ID</label>
+                    <label for="groupID">Group ID</label>
                     <input type="text" class="form-control" id="groupID">
                 </div>
 
                 </form>
                 <br>
                 <div class="text-right">
-                <button type="submit" class="btn btn-primary btn-md" id="reserve add-btn"><span class="fa fa-fire"></span>Add your Group</button>
+                    <button type="submit" class="btn btn-primary submit" id="submitBtn">Submit</button>
                 </div>
             </div>
             </div>
+            <footer class="footer">
+                <div class="container">
+                  <p>
+                    <a href="/api/tables">API Table Link</a> |
+                    <a href="/api/waitlist">API Wait List</a>
+                </div>
+              </footer>
         </section>
-
     </div>
-
-    <script src="assets/js/reserve.js"></script>    
 </body>
 </html>
+   <script type="text/javascript">
+
+    $(".submit").on("click", function(event) {
+    event.preventDefault();
+
+    var newReserve = {
+      customerName: $("#name").val().trim(),
+      phoneNumber: $("#phoneNum").val().trim(),
+      customerEmail: $("#email").val().trim(),
+      customerID: $("#groupID").val().trim()
+    };
+    console.log(newReserve);
+
+    $.post("/api/tables", newReserve,
+      function(data) {
+        if (data) {
+          alert("You're booked!");
+          console.log(data);
+        }
+        else {
+          console.log("reserve.html", data);
+          alert("You been placed on the waitlist.");
+        }
+        // Clear form
+        $("#name").val("");
+        $("#phoneNum").val("");
+        $("#email").val("");
+        $("#groupID").val("");
+      });
+  });
+    </script>      
+
 
 
 
