@@ -46,60 +46,75 @@
             </div>
           </div>
         </section>
+
+      <footer class="footer">
+          <div class="container">
+              <p>
+            <!-- Added blank # href for clear function (Acts like a button) -->
+              <a href="#" id="clear">Clear Table</a> |
+            
+              <a href="/api/tables">API Table Link</a> |
+              <a href="/api/waitlist">API Wait List</a>
+              </p>
+          </div>
+      </footer>
     
-      </div>
+    </div>
     
-      <script type="text/javascript">
-        function runTableQuery() {
-          $.ajax({ url: "/api/tables", method: "GET" })
-            .then(function (data) {
-              console.log(data);
-              console.log("******");
-              for (var i = 0; i < data.length; i++) {
-                var tableList = $("#reservations");
-                var listItem = $("<li class='list-group-item mt-4'>");
-                listItem.append(
-                  $("<h2>").text("Table " + (i + 1)),
-                  $("<hr>"),
-                  $("<h2>").text("groupID: " + data[i].customerID),
-                  $("<h2>").text("name: " + data[i].customerName),
-                  $("<h2>").text("email: " + data[i].customerEmail),
-                  $("<h2>").text("phoneNum: " + data[i].phoneNumber)
-                );
-                tableList.append(listItem);
-              }
-            });
-        }
-        function runWaitListQuery() {
-          $.ajax({ url: "/api/waitlist", method: "GET" })
-            .then(function (data) {
-              console.log(data);
-              console.log("******");
-              for (var i = 0; i < data.length; i++) {
-                var waitList = $("#waitList");
-                var listItem = $("<li class='list-group-item mt-4'>");
-                listItem.append(
-                  $("<h2>").text("Table #" + (i + 1)),
-                  $("<hr>"),
-                  $("<h2>").text("groupID: " + data[i].customerID),
-                  $("<h2>").text("name: " + data[i].customerName),
-                  $("<h2>").text("email: " + data[i].customerEmail),
-                  $("<h2>").text("phoneNum: " + data[i].phoneNumber)
-                );
-                waitList.append(listItem);
-              }
-            });
-        }
-        function clearTable() {
-          alert("Clearing");
-          $.ajax({ url: "/api/clear", method: "POST" }).then(function () {
-            $("#waitList").empty();
-            $("#tableList").empty();
-          });
-        }
-        $("#clear").on("click", clearTable);
-        runTableQuery();
-        runWaitListQuery();
-      </script>
-    </body>
-    </html>
+  </body>
+  </html>
+
+<script type="text/javascript">
+
+function runTableQuery() {
+  $.ajax({ url: "/api/tables", method: "GET" })
+    .then(function (data) {
+      console.log(data);
+      console.log("******");
+      for (var i = 0; i < data.length; i++) {
+        var tableList = $("#reservations");
+        var listItem = $("<li class='list-group-item mt-4'>");
+        listItem.append(
+          $("<h2>").text("Table " + (i + 1)),
+          $("<hr>"),
+          $("<h2>").text("groupID: " + data[i].customerID),
+          $("<h2>").text("name: " + data[i].customerName),
+          $("<h2>").text("email: " + data[i].customerEmail),
+          $("<h2>").text("phoneNum: " + data[i].phoneNumber)
+        );
+        tableList.append(listItem);
+      }
+    });
+}
+function runWaitListQuery() {
+  $.ajax({ url: "/api/waitlist", method: "GET" })
+    .then(function (data) {
+      console.log(data);
+      console.log("******");
+      for (var i = 0; i < data.length; i++) {
+        var waitList = $("#waitList");
+        var listItem = $("<li class='list-group-item mt-4'>");
+        listItem.append(
+          $("<h2>").text("Table #" + (i + 1)),
+          $("<hr>"),
+          $("<h2>").text("groupID: " + data[i].customerID),
+          $("<h2>").text("name: " + data[i].customerName),
+          $("<h2>").text("email: " + data[i].customerEmail),
+          $("<h2>").text("phoneNum: " + data[i].phoneNumber)
+        );
+        waitList.append(listItem);
+      }
+    });
+}
+function clearTable() {
+  alert("Clearing... refreshing the page.");
+  $.ajax({ url: "/api/clear", method: "POST" }).then(function () {
+    $("#reservations").empty();
+    $("#waitList").empty();
+  });
+}
+$("#clear").on("click", clearTable);
+runTableQuery();
+runWaitListQuery();
+
+</script>
