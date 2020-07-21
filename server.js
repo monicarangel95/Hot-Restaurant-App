@@ -10,28 +10,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //Tables Array
-var tables = [
-    {
-        customerName: "Guy",
-        phoneNumber: "000-000-0000",
-        customerEmail: "Guy@gmail.com",
-        customerID: "Guy1"
-    },
-    {
-        customerName: "Woman",
-        phoneNumber: "000-000-0000",
-        customerEmail: "Woman@gmail.com",
-        customerID: "woman1"
-    }
-];
+var tables = [];
 // Waitlist Array
-var waitlist = [{
-
-    customerName: "Ms. Kitty",
-    phoneNumber: "000-000-0000",
-    customerEmail: "kitty@gmail.com",
-    customerID: "kitty"
-}];
+var waitlist = [];
 
 // ROUTES////
 // Basic route that sends the user first to the AJAX Page
