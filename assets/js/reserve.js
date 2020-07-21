@@ -9,6 +9,7 @@
 
 //     console.log(newPeople);
 
+<<<<<<< HEAD
 //     $.post("/api/tables", newPeople, function(){
 //         $("#name").val(""),
 //         $("#phonenum").val(""),
@@ -16,3 +17,14 @@
 //         $("groupID").val("")
 //     })
 // })
+=======
+    $.post("/api/tables", newPeople, function(){
+        
+        
+        $("#name").val(""),
+        $("#phonenum").val(""),
+        $("#email").val(""),
+        $("groupID").val("")
+    })
+})
+>>>>>>> a289e5820352df7873461277f922cecb904e2bb1
