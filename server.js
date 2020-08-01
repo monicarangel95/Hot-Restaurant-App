@@ -8,7 +8,7 @@ var PORT = process.env.PORT || 3001;
 // Handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
+app.use(express.static("public"));
 //Tables Array
 var tables = [
     {
