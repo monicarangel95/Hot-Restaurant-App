@@ -21,6 +21,7 @@
   Backend team 
   - monicarangel95 
   - andrewyen64
+
   Frontend team
   - cmsebastian
   - rahme
